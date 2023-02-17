@@ -1,9 +1,12 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import React from 'react';
+import App from './App';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+import { history } from 'utils';
+import { CssBaseline } from '@material-ui/core';
+import { createRoot } from 'react-dom/client';
+import { ConnectedRouter } from 'connected-react-router';
 import './index.css';
 
 const container = document.getElementById('root')!;
@@ -12,7 +15,10 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <CssBaseline></CssBaseline>
+        <App />
+      </ConnectedRouter>
     </Provider>
   </React.StrictMode>
 );
